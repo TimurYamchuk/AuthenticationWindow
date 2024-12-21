@@ -1,0 +1,30 @@
+﻿<Window x:Class="AuthenticationWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Authentication" Width="400" Height="250" Background="#2B2B2B">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Username:" Foreground="White" VerticalAlignment="Center" Margin="0,10,10,10"/>
+        <TextBox x:Name="UsernameTextBox" Grid.Column="1" VerticalAlignment="Center" Margin="0,10,0,10" Text="JSmith" Height="30" />
+
+        <Label Content="Password:" Grid.Row="1" Foreground="White" VerticalAlignment="Center" Margin="0,10,10,10"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,10,0,10" Height="30" />
+
+        <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Content="Remember Me" Foreground="White" VerticalAlignment="Center" Margin="0,10,0,10"/>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button Content="Log In" Width="100" Height="40" Margin="0,0,10,0" Background="Green" Foreground="White" FontWeight="Bold" Click="LogInButton_Click"/>
+            <Button Content="Cancel" Width="100" Height="40" Background="Red" Foreground="White" FontWeight="Bold" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
