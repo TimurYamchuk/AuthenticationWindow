@@ -1,7 +1,41 @@
-﻿<Window x:Class="AuthenticationWindow.MainWindow"
+<Window x:Class="AuthenticationWindow.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Authentication" Width="400" Height="250" Background="#2B2B2B">
+    <Window.Resources>
+        <!-- Шаблон для TextBox -->
+        <ControlTemplate x:Key="TextBoxTemplate" TargetType="TextBox">
+            <Border BorderBrush="#5A5A5A" BorderThickness="1" Background="#3E3E3E" CornerRadius="5">
+                <Grid>
+                    <TextBox x:Name="UsernameTextBox" VerticalAlignment="Center" Foreground="White" Background="Transparent" BorderBrush="#5A5A5A" BorderThickness="1" Padding="5" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <!-- Шаблон для кнопки Log In -->
+        <ControlTemplate x:Key="LogInButtonTemplate" TargetType="Button">
+            <Border Background="Green" BorderBrush="Green" BorderThickness="1" CornerRadius="5" Padding="10">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
+        <!-- Шаблон для кнопки Cancel -->
+        <ControlTemplate x:Key="CancelButtonTemplate" TargetType="Button">
+            <Border Background="Red" BorderBrush="Red" BorderThickness="1" CornerRadius="5" Padding="10">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
+        <!-- Шаблон для CheckBox -->
+        <ControlTemplate x:Key="CheckBoxTemplate" TargetType="CheckBox">
+            <Border Background="#3E3E3E" BorderBrush="#5A5A5A" BorderThickness="1" CornerRadius="5">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <CheckBox x:Name="CheckBox" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White" />
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,16 +49,24 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Username:" Foreground="White" VerticalAlignment="Center" Margin="0,10,10,10"/>
-        <TextBox x:Name="UsernameTextBox" Grid.Column="1" VerticalAlignment="Center" Margin="0,10,0,10" Text="JSmith" Height="30" />
+        <TextBox x:Name="UsernameTextBox" Grid.Column="1" VerticalAlignment="Center" Template="{StaticResource TextBoxTemplate}" />
 
         <Label Content="Password:" Grid.Row="1" Foreground="White" VerticalAlignment="Center" Margin="0,10,10,10"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,10,0,10" Height="30" />
+        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
 
-        <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Content="Remember Me" Foreground="White" VerticalAlignment="Center" Margin="0,10,0,10"/>
+        <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Content="Remember Me" Template="{StaticResource CheckBoxTemplate}" />
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button Content="Log In" Width="100" Height="40" Margin="0,0,10,0" Background="Green" Foreground="White" FontWeight="Bold" Click="LogInButton_Click"/>
-            <Button Content="Cancel" Width="100" Height="40" Background="Red" Foreground="White" FontWeight="Bold" Click="CancelButton_Click"/>
+            <Button Template="{StaticResource LogInButtonTemplate}" Width="100" Height="40" Click="LogInButton_Click">
+                <Button.Content>
+                    <TextBlock Text="Log In" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+            <Button Template="{StaticResource CancelButtonTemplate}" Width="100" Height="40" Click="CancelButton_Click">
+                <Button.Content>
+                    <TextBlock Text="Cancel" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
